@@ -1,12 +1,11 @@
 using NUnit.Framework;
-using System;
 
 namespace BerlinClock.Tests
 {
     [TestFixture]
     public class TimeUnitCalculationTests
     {
-        ITimeUnitCalculator _sut = new TimeUnitCalculator();
+        readonly ITimeUnitCalculator sut = new TimeUnitCalculator();
 
         [TestCase(5, ExpectedResult = false)]
         [TestCase(10, ExpectedResult = true)]
@@ -14,7 +13,7 @@ namespace BerlinClock.Tests
         [TestCase(0, ExpectedResult = true)]
         public bool IsSecondsLightActiveTest(int input)
         {
-            return _sut.IsSecondsLightActive(input);
+            return sut.IsSecondsLightActive(input);
         }
 
         [TestCase(0, ExpectedResult = 0)]
@@ -24,7 +23,7 @@ namespace BerlinClock.Tests
         [TestCase(24, ExpectedResult = 4)] 
         public int CalculateUpperHoursNumberOfLightsTest(int hours)
         {
-            return _sut.CalculateUpperHoursNumberOfLights(hours);
+            return sut.CalculateUpperHoursNumberOfLights(hours);
         }
 
         [TestCase(0, ExpectedResult = 0)]
@@ -34,7 +33,7 @@ namespace BerlinClock.Tests
         [TestCase(24, ExpectedResult = 4)]
         public int CalculateLowerHoursNumberOfLightsTest(int hours)
         {
-            return _sut.CalculateLowerHoursNumberOfLights(hours);
+            return sut.CalculateLowerHoursNumberOfLights(hours);
         }
 
 
@@ -45,7 +44,7 @@ namespace BerlinClock.Tests
         [TestCase(24, ExpectedResult = 4)]
         public int CalculateUpperMinutesNumberOfLightsTest(int hours)
         {
-            return _sut.CalculateUpperMinutesNumberOfLights(hours);
+            return sut.CalculateUpperMinutesNumberOfLights(hours);
         }
 
         [TestCase(0, ExpectedResult = 0)]
@@ -55,7 +54,7 @@ namespace BerlinClock.Tests
         [TestCase(24, ExpectedResult = 4)]
         public int CalculateLowerMinutesNumberOfLightsTest(int hours)
         {
-            return _sut.CalculateLowerMinutesNumberOfLights(hours);
+            return sut.CalculateLowerMinutesNumberOfLights(hours);
         }
     }
 }

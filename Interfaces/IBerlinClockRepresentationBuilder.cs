@@ -1,8 +1,7 @@
 ﻿namespace BerlinClock
 {
-    public interface IBerlinClockRepresentation
+    public interface IBerlinClockRepresentationBuilder
     {
         string ConvertToBerlinClockTime(string aTime);
-
     }
 }

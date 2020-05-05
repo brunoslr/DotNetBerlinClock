@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\BerlinClockFeatureSteps.cs" />
-    <Compile Include="Interfaces\IBerlinClockRepresentation.cs" />
+    <Compile Include="Interfaces\IBerlinClockRepresentationBuilder.cs" />
     <Compile Include="Interfaces\ITimeParser.cs" />
-    <Compile Include="Interfaces\ITimeUnitCalculation.cs" />
+    <Compile Include="Interfaces\ITimeUnitCalculator.cs" />
     <Compile Include="Interfaces\ITimeUnitFormatter.cs" />
-    <Compile Include="Classes\BerlinClockRepresentation.cs" />
+    <Compile Include="Classes\BerlinClockRepresentationBuilder.cs" />
     <Compile Include="Classes\TimeParser.cs" />
     <Compile Include="Classes\TimeStruct.cs" />
     <Compile Include="Classes\TimeUnitCalculation.cs" />

@@ -6,13 +6,13 @@ namespace BerlinClock.Tests
     [TestFixture]
     public class TimeUnitFormatterTests
     {
-        ITimeUnitFormatter _sut = new TimeUnitFormatter();
+        readonly ITimeUnitFormatter sut = new TimeUnitFormatter();
 
         [TestCase(true, ExpectedResult = "Y")]
         [TestCase(false, ExpectedResult = "O")]
         public string FormatSecondRepresentationTest(bool input)
         {
-            return _sut.FormatSecondRepresentation(input);
+            return sut.FormatSecondRepresentation(input);
         }
 
         [TestCase(11, 4, ExpectedResult = "YYRYYRYYRYY\r\nYYYY")]//59
@@ -22,7 +22,7 @@ namespace BerlinClock.Tests
         [TestCase(0, 0, ExpectedResult = "OOOOOOOOOOO\r\nOOOO")] // 0
         public string FormatMinutesRepresentationTest(int upperLights, int lowerLights)
         {
-            return _sut.FormatMinutesRepresentation(upperLights, lowerLights);
+            return sut.FormatMinutesRepresentation(upperLights, lowerLights);
         }
 
         [TestCase(4, 4, ExpectedResult = "RRRR\r\nRRRR")] // 24
@@ -31,14 +31,14 @@ namespace BerlinClock.Tests
         [TestCase(0, 0, ExpectedResult = "OOOO\r\nOOOO")] // 0
         public string FormatHoursRepresentationTest(int upperLights, int lowerLights)
         {
-            return _sut.FormatHoursRepresentation(upperLights, lowerLights);
+            return sut.FormatHoursRepresentation(upperLights, lowerLights);
         }
 
         [Test]
         public void ShouldNotAcceptMoreLightsThanCapacity()
         {
-            int hours = 999;
-            Assert.Throws<ArgumentOutOfRangeException>(() => { _sut.FormatHoursRepresentation(hours, 0); });
+            var hours = 999;
+            Assert.Throws<ArgumentOutOfRangeException>(() => { sut.FormatHoursRepresentation(hours, 0); });
 
         }
     }

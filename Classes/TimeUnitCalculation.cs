@@ -28,8 +28,5 @@
         {
             return minutes % 5;
         }
-
-
-       
     }
 }

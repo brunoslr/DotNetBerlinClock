@@ -2,13 +2,13 @@
 
 namespace BerlinClock
 {
-    public class BerlinClockRepresentation : IBerlinClockRepresentation
+    public class BerlinClockRepresentationBuilder : IBerlinClockRepresentationBuilder
     {
-        private readonly string DefaultErrorMessage = "The conversion process has failed with the following message: ";
+        private const string DefaultErrorMessage = "The conversion process has failed with the following message: ";
 
-        private ITimeUnitFormatter timeUnitFormatter = new TimeUnitFormatter();
-        private ITimeUnitCalculator timeUnitCalculation = new TimeUnitCalculator();
-        private ITimeParser timeParser = new TimeParser();
+        private readonly ITimeUnitFormatter timeUnitFormatter = new TimeUnitFormatter();
+        private readonly ITimeUnitCalculator timeUnitCalculation = new TimeUnitCalculator();
+        private readonly ITimeParser timeParser = new TimeParser();
 
         private string SecondsRepresentation(int seconds)
         {
@@ -32,11 +32,12 @@ namespace BerlinClock
 
             return timeUnitFormatter.FormatMinutesRepresentation(upperMinutes, lowerMinutes );
         }
-        private string TimeRepresentation(int seconds, int minutes, int hours)
+
+        private string TimeRepresentation(TimeStruct time)
         {
-            return $"{SecondsRepresentation(seconds)}{Environment.NewLine}" +
-               $"{HoursRepresentation(hours)}{Environment.NewLine}" +
-               $"{MinutesRepresentation(minutes)}";
+            return $"{SecondsRepresentation(time.Seconds)}{Environment.NewLine}" +
+               $"{HoursRepresentation(time.Hours)}{Environment.NewLine}" +
+               $"{MinutesRepresentation(time.Minutes)}";
         }
 
         public string ConvertToBerlinClockTime(string aTime)
@@ -44,11 +45,12 @@ namespace BerlinClock
             try
             {
                 TimeStruct time = timeParser.ParseTimeInput(aTime);
-                return TimeRepresentation(time.Seconds, time.Minutes, time.Hours);
+                return TimeRepresentation(time);
             }
 
             catch(Exception e)
             {
+                //Error logging would go here!
                 return $"{DefaultErrorMessage}{e.Message}";
             }
         }

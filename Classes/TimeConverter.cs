@@ -3,12 +3,12 @@
     public class TimeConverter : ITimeConverter
     {
         
-        private IBerlinClockRepresentation berlinClockRepresentation = new BerlinClockRepresentation();
+        private readonly IBerlinClockRepresentationBuilder berlinClockRepresentationBuilder = new BerlinClockRepresentationBuilder();
 
         public string convertTime(string aTime)
         {
             
-            return berlinClockRepresentation.ConvertToBerlinClockTime(aTime);
+            return berlinClockRepresentationBuilder.ConvertToBerlinClockTime(aTime);
             
         }
     }
